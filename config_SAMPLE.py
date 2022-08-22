@@ -1,4 +1,4 @@
-REPORT_NAME     = 'Dashboard of local DMR network'           # Name of the monitored HBlink system
+REPORT_NAME     = 'Dashboard of local DMR network'
 #
 CONFIG_INC      = True                           # Include HBlink stats
 HOMEBREW_INC    = True                           # Display Homebrew Peers status

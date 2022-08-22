@@ -967,6 +967,18 @@ class web_server(Resource):
                     BRIDGES_INC = False
                     URL_PATH = "sinfo"
                     return (sysinfo_html).encode('utf-8')
+                    
+                # this line is to add hbmon url when auth is enable. added by ipoel
+                 elif request.uri == b'/about':
+                    BRIDGES_INC = False
+                    URL_PATH = "about"
+                    return (about_page).encode('utf-8')                 
+                 elif request.uri == b'/weather':
+                    BRIDGES_INC = False
+                    URL_PATH = "weather"
+                    return (weather_page).encode('utf-8')      
+                    
+                    
                  else:
                     return  "Bad request".encode('utf-8')
           request.setResponseCode(401)
@@ -1011,6 +1023,18 @@ class web_server(Resource):
                 BRIDGES_INC = False
                 URL_PATH = "sinfo"
                 return (sysinfo_html).encode('utf-8')
+                
+            # this line is to add hbmon url when auth is disable. added by ipoel
+            elif request.uri == b'/about':
+                BRIDGES_INC = False
+                URL_PATH = "about"
+                return (about_page).encode('utf-8')
+            elif request.uri == b'/weather':
+                BRIDGES_INC = False
+                URL_PATH = "weather"
+                return (weather_page).encode('utf-8')
+
+
             else:
                 return  "Bad request".encode('utf-8')
 
@@ -1117,8 +1141,17 @@ if __name__ == '__main__':
     sysinfo_html = get_template(PATH + 'templates/sysinfo_template.html')
     sysinfo_html = sysinfo_html.replace('<<<system_name>>>', REPORT_NAME)
     sysinfo_html = sysinfo_html.replace('<<<theme_color>>>', THEME_COLOR)
+    
+    # this code is to take html file and save it as variable added by ipoel
+    about_page = get_template(PATH + 'templates/about_page.html')
+    about_page = about_page.replace('<<<system_name>>>', REPORT_NAME)
+    about_page = about_page.replace('<<<theme_color>>>', THEME_COLOR)
 
+    weather_page = get_template(PATH + 'templates/weather_page.html')
+    weather_page = weather_page.replace('<<<system_name>>>', REPORT_NAME)
+    weather_page = weather_page.replace('<<<theme_color>>>', THEME_COLOR)
 
+    
 
     # Start update loop
     update_stats = task.LoopingCall(build_stats)

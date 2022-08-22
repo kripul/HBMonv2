@@ -1,10 +1,17 @@
-<div style="width: 1100px;">
+<div style="width: 960px;">
 <!-- HBMonitor buttons HTML code -->
 <a href="/"><button class="button link">&nbsp;Home&nbsp;</button></a>
+
+<!--disable about and weather button-->
+<!--<a href="/about"><button class="button link">&nbsp;About&nbsp;</button></a>-->
+<!--<a href="/weather"><button class="button link">&nbsp;Weather&nbsp;</button></a>-->
+
+
 {% if auth == True %}
 &nbsp;
 <div class="dropdown">
-  <button class="dropbtn">&nbsp;Admin Area&nbsp;</button>
+    <!--change label from Admin Area to Extras-->
+  <button class="dropbtn">&nbsp;Extras&nbsp;</button>
   <div class="dropdown-content">
     <a href="/masters">&nbsp;Masters&nbsp;</a>
     <a href="/peers">&nbsp;Peers&nbsp;</a>
@@ -33,34 +40,8 @@
 <a href="/sinfo"><button class="button link">&nbsp;System Info&nbsp;</button></a>
 &nbsp;
 {% endif %}
-<a href="/info"><button class="button link">&nbsp;Info&nbsp;</button></a>
+<!--change label info button to Talk Groups-->
+<a href="/info"><button class="button link">&nbsp;Talk Groups&nbsp;</button></a>
 &nbsp;
-<!-- Own buttons HTML code -->
-<!-- link to long lastheard
-<a target='_blank' href="http://192.168.1.1/log.php"><button class="button link">&nbsp;Lastheard&nbsp;</button></a>
-&nbsp;
-
--->
-
-<!-- Example of buttons dropdown HTML code -->
-<!--
-<p></p>
-<div class="dropdown">
-  <button class="dropbtn">Admin Area</button>
-  <div class="dropdown-content">
-    <a href="/masters">Master&Peer</a>
-    <a href="/opb">OpenBridge</a>
-    <a href="/moni">Monitor</a>
-  </div>
-</div>
-&nbsp;
-<div class="dropdown">
-  <button class="dropbtn">Reflectors</button>
-  <div class="dropdown-content">
-    <a target='_blank' href="#">YSF Reflector</a>
-    <a target='_blank' href="#">XLX950</a>
-  </div>
-</div>
--->
 </div>
 <p></p>
