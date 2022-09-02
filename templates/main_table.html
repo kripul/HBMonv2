@@ -4,31 +4,33 @@
 <fieldset>
 <legend>&nbsp;.: DMR Server activity :.&nbsp;</legend>
 {% if _table['MASTERS']|length >0 %}
- <table style="table-layout:fixed;font: 10pt arial, sans-serif;margin-top:4px;margin-bottom:4px;" width=100%>
-    <tr style="height:30px;font: 10pt arial, sans-serif;{{ themec }}">
-        <th style='width: 20%;'>Systems M&P</th>
-        <th style='width: 40%;'>Source</th>
-        <th style='width: 40%;'>Destination</th>
-    </tr>
+<table class="scroll">
+    <thead>
+        <tr>
+            <th style='width: 20%;'>Systems M&P</th>
+            <th style='width: 39%;'>Source</th>
+            <th style='width: 39%;'>Destination</th>
+        </tr>
+    </thead>
+    <tbody>
     {% for _master in _table['MASTERS'] %}    
     {% for _client, _cdata in _table['MASTERS'][_master]['PEERS'].items() %}
     {% if _cdata[1]['TS'] == True or _cdata[2]['TS'] == True %}
-    <tr style="background-color:#f9f9f9f9;line-height:1.4;">
-        {% if _cdata[1]['TRX'] == "RX" %}
-        <td style="font-weight:bold; padding-left: 20px; text-align:left;color:#464646;">M: {{_master}}</td>
-        <td style="font: 9.5pt arial, sans-serif;font-weight: 600;color:#0d1a81;">{{ _cdata[1]['SUB']|safe }}</td>
-        <td style="font: 9.5pt arial, sans-serif;font-weight: 600;color:#b5651d;">{{ _cdata[1]['DEST']|safe }}</td>
-        {% endif %}
-        {% if _cdata[2]['TRX'] == "RX" %}
-        <td style="font-weight:bold; padding-left: 20px; text-align:left;color:#464646">M: {{_master}}</td>
-        <td style="font: 9.5pt arial, sans-serif;font-weight: 600;color:#0d1a81;">{{ _cdata[2]['SUB']|safe }}</td>
-        <td style="font: 9.5pt arial, sans-serif;font-weight: 600;color:#b5651d;">{{ _cdata[2]['DEST']|safe }}</td>
-        {% endif %}
-    </tr>
+        <tr>
+            {% if _cdata[1]['TRX'] == "RX" %}
+            <td style="font-weight:bold; padding-left: 20px; text-align:left;color:#464646;width: 18%;">M: {{_master}}</td>
+            <td style="font: 12pt arial, sans-serif;font-weight: 600;color:#0d1a81;width: 40%;">{{ _cdata[1]['SUB']|safe }}</td>
+            <td style="font: 12pt arial, sans-serif;font-weight: 600;color:#b5651d;width: 38%;">{{ _cdata[1]['DEST']|safe }}</td>
+            {% endif %}
+            {% if _cdata[2]['TRX'] == "RX" %}
+            <td style="font-weight:bold; padding-left: 20px; text-align:left;color:#464646;width: 18%;">M: {{_master}}</td>
+            <td style="font: 12pt arial, sans-serif;font-weight: 600;color:#0d1a81;width: 40%;">{{ _cdata[2]['SUB']|safe }}</td>
+            <td style="font: 12pt arial, sans-serif;font-weight: 600;color:#b5651d;width: 38%;">{{ _cdata[2]['DEST']|safe }}</td>
+            {% endif %}
+        </tr>
     {% endif %}
     {% endfor %}
     {% endfor %}
-
 {% else %}
          <table style='width:100%; font: 13pt arial, sans-serif; margin-top:4px;margin-bottom:4px;'>
              <tr style='border:none; background-color:#f9f9f9f9;'>
@@ -36,18 +38,19 @@
              </tr>
             </table>
  {% endif %}
-    {% for _peer, _pdata  in _table['PEERS'].items() %}
+
+   {% for _peer, _pdata  in _table['PEERS'].items() %}
     {% if _pdata[1]['TS'] == True or _pdata[2]['TS'] == True %}
     <tr style="background-color:#f9f9f9f9;line-height:1.4;">
         {% if _pdata[1]['TRX'] == "RX" %}
-        <td style="font-weight:bold; padding-left: 20px; text-align:left;color:#464646;">P: {{_peer}} </td>
-        <td style="font: 9.5pt arial, sans-serif;font-weight: 600;color:#0d1a81;">{{ _pdata[1]['SUB']|safe }}</td>
-        <td style="font: 9.5pt arial, sans-serif;font-weight: 600;color:#b5651d;">{{ _pdata[1]['DEST']|safe }}</td>
+        <td style="font-weight:bold; padding-left: 20px; text-align:left;color:#464646;;width: 18%;">P: {{_peer}} </td>
+        <td style="font: 12pt arial, sans-serif;font-weight: 600;color:#0d1a81;width: 40%;">{{ _pdata[1]['SUB']|safe }}</td>
+        <td style="font: 12pt arial, sans-serif;font-weight: 600;color:#b5651d;width: 38%;">{{ _pdata[1]['DEST']|safe }}</td>
         {% endif %}
         {% if _pdata[2]['TRX'] == "RX" %}
-        <td style="font-weight:bold; padding-left: 20px; text-align:left;color:#464646;">P: {{_peer}} </td>
-        <td style="font: 9.5pt arial, sans-serif;font-weight: 600;color:#0d1a81;">{{ _pdata[2]['SUB']|safe }}</td>
-        <td style="font: 9.5pt arial, sans-serif;font-weight: 600;color:#b5651d;">{{ _pdata[2]['DEST']|safe }}</td>
+        <td style="font-weight:bold; padding-left: 20px; text-align:left;color:#464646;;width: 18%;">P: {{_peer}} </td>
+        <td style="font: 12pt arial, sans-serif;font-weight: 600;color:#0d1a81;width: 40%;">{{ _pdata[2]['SUB']|safe }}</td>
+        <td style="font: 12pt arial, sans-serif;font-weight: 600;color:#b5651d;width: 38%;">{{ _pdata[2]['DEST']|safe }}</td>
         {% endif %}
     </tr>
     {% endif %}
@@ -75,6 +78,7 @@
    {% endif %}
    {% endfor %}
 {% endif %}
+</tbody>
 </table>
 </fieldset>
 <br>
@@ -91,12 +95,12 @@
 <tr style="background-color:#f9f9f9f9;"><td>
 <br>
 <div style="text-align:left;"><span style="color:#464646;font-weight:600;line-height:1.4;">&nbsp;&nbsp;USERS:</span></div>
-<div style="text-align:left;font:9.5pt arial, sans-serif;font-weight:bold;margin-left:25px; margin-right:25px;line-height:1.4;white-space:normal;">
+<div style="text-align:left;font:12pt arial, sans-serif;font-weight:bold;margin-left:25px; margin-right:25px;line-height:1.4;white-space:normal;">
     {% for _master in _table['MASTERS'] %}    
     {% if _table['MASTERS'][_master]['PEERS']|length >0 %}
     {% for _client, _cdata in _table['MASTERS'][_master]['PEERS'].items() %}
     <span class="tooltip" style="border-bottom: 1px dotted white;">
-    <a style="border-bottom: 1px dotted white;font: 9.5pt arial,sans-serif;font-weight:bold;color:#0066ff;" target="_blank" href="http://www.qrz.com/db/{{_cdata['CALLSIGN']}}"><b>{{_cdata['CALLSIGN']}}</b></a>
+    <a style="border-bottom: 1px dotted white;font: 12pt arial,sans-serif;font-weight:bold;color:#0066ff;" target="_blank" href="http://www.qrz.com/db/{{_cdata['CALLSIGN']}}"><b>{{_cdata['CALLSIGN']}}</b></a>
     <span class="tooltiptext" style="left:115%;top:-10px;">
         <span style="font: 9pt arial,sans-serif;color:#FFFFFF">
         &nbsp;&nbsp;&nbsp;<b>DMR ID</b>: <b><font color=yellow>{{ _client }}</b></font><br>
@@ -118,7 +122,7 @@
 {% if _table['PEERS']|length >0 %}
 <br>
 <div style="text-align:left;"><span style="color:#464646;font-weight:600;line-height:1.8;">&nbsp;&nbsp;PEERS:</span></div>
-<div style="text-align:left;font:9.5pt arial, sans-serif;font-weight:bold;margin-left:25px; margin-right:25px;line-height:1.6;white-space:normal;">
+<div style="text-align:left;font:12pt arial, sans-serif;font-weight:bold;margin-left:25px; margin-right:25px;line-height:1.6;white-space:normal;">
     {% for _peer, _pdata  in _table['PEERS'].items() %}
     <span class="tooltip" style="bmargin-bottom:6px;order-bottom: 1px dotted white;{{'background-color:#8ecfb4; color:#464646;' if _table['PEERS'][_peer]['STATS']['CONNECTION'] == 'YES' else 'background-color:#ff0000; color:white;'}}"><b>&nbsp;&nbsp;{{_peer}}&nbsp;&nbsp;</b>
     {% if _table['PEERS'][_peer]['STATS']['CONNECTION'] == 'YES' %}
